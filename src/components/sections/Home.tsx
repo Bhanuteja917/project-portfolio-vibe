@@ -1,6 +1,7 @@
 
 import { ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
+import TypewriterEffect from "../TypewriterEffect";
 
 const Home = () => {
   return (
@@ -12,7 +13,11 @@ const Home = () => {
         <div className="max-w-3xl mx-auto text-center space-y-8">
           <h1 className="text-4xl md:text-6xl font-bold tracking-tight animate-fade-in">
             Hi, I'm{" "}
-            <span className="text-primary">Your Name</span>
+            <TypewriterEffect 
+              text="Your Name" 
+              className="text-primary" 
+              delay={150} 
+            />
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground animate-fade-in animation-delay-100">
             A passionate developer crafting beautiful digital experiences
