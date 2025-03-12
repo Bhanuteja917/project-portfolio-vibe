@@ -2,9 +2,15 @@
 import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "./ui/button";
+import Footer from "./Footer";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(() => {
+    // Load theme preference from localStorage or use system preference
+    const savedTheme = localStorage.getItem("theme");
+    return savedTheme === "dark" || 
+      (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  });
 
   useEffect(() => {
     if (isDarkMode) {
@@ -12,6 +18,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     } else {
       document.documentElement.classList.remove('dark');
     }
+    // Save theme preference to localStorage
+    localStorage.setItem("theme", isDarkMode ? "dark" : "light");
   }, [isDarkMode]);
 
   return (
@@ -42,6 +50,7 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       <main className="pt-16">
         {children}
       </main>
+      <Footer />
     </div>
   );
 };
