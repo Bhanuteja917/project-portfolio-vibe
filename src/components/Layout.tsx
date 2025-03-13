@@ -44,9 +44,13 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               size="icon"
               onClick={() => setIsDarkMode(!isDarkMode)}
               aria-label="Toggle theme"
-              className="transition-transform duration-300 hover:rotate-12"
+              className="relative"
             >
-              {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+              {isDarkMode ? (
+                <Sun className="h-5 w-5 animate-spin-once" />
+              ) : (
+                <Moon className="h-5 w-5 animate-spin-once" />
+              )}
             </Button>
           </div>
         </div>

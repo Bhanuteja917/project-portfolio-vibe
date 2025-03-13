@@ -7,7 +7,9 @@ const Footer = () => {
   
   return (
     <footer className="py-8 border-t bg-background relative overflow-hidden">
-      <InteractiveBackground className="opacity-50" />
+      <div className="absolute inset-0 w-full h-full">
+        <InteractiveBackground className="opacity-50" />
+      </div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-muted-foreground text-sm mb-4 md:mb-0 transition-all hover:text-primary duration-300">

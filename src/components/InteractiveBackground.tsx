@@ -17,9 +17,16 @@ const InteractiveBackground = ({ className = "" }: InteractiveBackgroundProps) =
 
     // Set canvas dimensions
     const updateSize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      const parent = canvas.parentElement;
+      if (parent) {
+        canvas.width = parent.offsetWidth;
+        canvas.height = parent.offsetHeight;
+      } else {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
     };
+    
     window.addEventListener("resize", updateSize);
     updateSize();
 
@@ -36,8 +43,9 @@ const InteractiveBackground = ({ className = "" }: InteractiveBackgroundProps) =
     };
 
     window.addEventListener("mousemove", function(event) {
-      mouse.x = event.x;
-      mouse.y = event.y;
+      const rect = canvas.getBoundingClientRect();
+      mouse.x = event.clientX - rect.left;
+      mouse.y = event.clientY - rect.top;
     });
 
     window.addEventListener("mouseout", function() {
@@ -168,8 +176,9 @@ const InteractiveBackground = ({ className = "" }: InteractiveBackgroundProps) =
     return () => {
       window.removeEventListener("resize", updateSize);
       window.removeEventListener("mousemove", function(event) {
-        mouse.x = event.x;
-        mouse.y = event.y;
+        const rect = canvas.getBoundingClientRect();
+        mouse.x = event.clientX - rect.left;
+        mouse.y = event.clientY - rect.top;
       });
       window.removeEventListener("mouseout", function() {
         mouse.x = null;
@@ -178,7 +187,7 @@ const InteractiveBackground = ({ className = "" }: InteractiveBackgroundProps) =
     };
   }, []);
 
-  return <canvas ref={canvasRef} className={`absolute inset-0 -z-10 ${className}`} />;
+  return <canvas ref={canvasRef} className={`absolute inset-0 ${className}`} />;
 };
 
 export default InteractiveBackground;
