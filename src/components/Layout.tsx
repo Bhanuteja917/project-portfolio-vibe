@@ -26,21 +26,25 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     <div className="min-h-screen bg-background transition-colors duration-300">
       <nav className="fixed top-0 left-0 right-0 z-50 border-b bg-background/80 backdrop-blur-sm">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-xl font-bold">Your Name</h1>
+          <h1 className="text-xl font-bold hover:text-primary transition-colors duration-300">Your Name</h1>
           <div className="flex items-center gap-6">
             <div className="hidden md:flex gap-6">
-              <a href="#home" className="hover:text-primary transition-colors">Home</a>
-              <a href="#about" className="hover:text-primary transition-colors">About</a>
-              <a href="#projects" className="hover:text-primary transition-colors">Projects</a>
-              <a href="#experience" className="hover:text-primary transition-colors">Experience</a>
-              <a href="#skills" className="hover:text-primary transition-colors">Skills</a>
-              <a href="#contact" className="hover:text-primary transition-colors">Contact</a>
+              {['home', 'about', 'projects', 'experience', 'skills', 'contact'].map((item) => (
+                <a 
+                  key={item}
+                  href={`#${item}`} 
+                  className="relative overflow-hidden hover:text-primary transition-colors duration-300 py-2 story-link"
+                >
+                  {item.charAt(0).toUpperCase() + item.slice(1)}
+                </a>
+              ))}
             </div>
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsDarkMode(!isDarkMode)}
               aria-label="Toggle theme"
+              className="transition-transform duration-300 hover:rotate-12"
             >
               {isDarkMode ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
             </Button>

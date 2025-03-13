@@ -15,6 +15,7 @@ const TypewriterEffect = ({
   const [displayText, setDisplayText] = useState("");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTyping, setIsTyping] = useState(false);
+  const [showCursor, setShowCursor] = useState(true);
   const elementRef = useRef<HTMLSpanElement>(null);
 
   // Reset the typewriter effect
@@ -49,6 +50,15 @@ const TypewriterEffect = ({
     };
   }, []);
 
+  // Blinking cursor effect
+  useEffect(() => {
+    const cursorInterval = setInterval(() => {
+      setShowCursor((prev) => !prev);
+    }, 530);
+
+    return () => clearInterval(cursorInterval);
+  }, []);
+
   // Handle the typewriter effect animation
   useEffect(() => {
     if (currentIndex < text.length && isTyping) {
@@ -63,7 +73,12 @@ const TypewriterEffect = ({
     }
   }, [currentIndex, delay, isTyping, text]);
 
-  return <span ref={elementRef} className={className}>{displayText}</span>;
+  return (
+    <span ref={elementRef} className={className}>
+      {displayText}
+      <span className={`${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity duration-100`}>|</span>
+    </span>
+  );
 };
 
 export default TypewriterEffect;
