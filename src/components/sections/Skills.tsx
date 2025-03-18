@@ -59,13 +59,13 @@ const Skills = () => {
   return (
     <Section id="skills" className="bg-muted/30">
       <div>
-        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center animate-fade-in">
+        <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center animate-fade-in">
           Skills & Expertise
         </h2>
         
-        <div className="mb-8 text-center">
+        <div className="mb-6 text-center">
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Drag nodes to explore, zoom in/out, and pan around. Skills are clustered by category.
+            Explore my technical skills and expertise. Click on any skill to see where I've applied it in projects and professional experience.
           </p>
         </div>
         
