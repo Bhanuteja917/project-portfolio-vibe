@@ -1,16 +1,12 @@
 
 import { Heart } from "lucide-react";
-import InteractiveBackground from "./InteractiveBackground";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="py-8 border-t bg-background relative overflow-hidden">
-      <div className="absolute inset-0 w-full h-full">
-        <InteractiveBackground className="opacity-50" />
-      </div>
-      <div className="container mx-auto px-4 relative z-10">
+    <footer className="py-8 border-t bg-background">
+      <div className="container mx-auto px-4">
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-muted-foreground text-sm mb-4 md:mb-0 transition-all hover:text-primary duration-300">
             © {currentYear} Your Name. All rights reserved.
