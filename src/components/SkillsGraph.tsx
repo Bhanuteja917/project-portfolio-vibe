@@ -174,7 +174,7 @@ const SkillsGraph: React.FC<SkillsGraphProps> = ({ skillCategories }) => {
     
     setNodes(newNodes);
     setEdges(newEdges);
-  }, [skillCategories, setNodes, setEdges, handleNodeClick]);
+  }, []); // Fixed: Removed the incorrect arguments here
 
   const nodeTypes: NodeTypes = {
     skillNode: SkillNode,

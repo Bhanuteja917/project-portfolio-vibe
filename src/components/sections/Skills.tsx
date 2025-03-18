@@ -3,13 +3,22 @@ import {
   Code, Database, Server, Globe, 
   Smartphone, Palette, Wrench, Layers 
 } from "lucide-react";
+import { useState } from "react";
 import Section from "../Section";
-import SkillsGraph from "../SkillsGraph";
+import { Card, CardContent } from "../ui/card";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "../ui/sheet";
 
 interface SkillCategory {
   title: string;
   icon: React.ReactNode;
   skills: string[];
+}
+
+interface SkillUsage {
+  name: string;
+  description: string;
+  projects?: string[];
+  experience?: string[];
 }
 
 const skillCategories: SkillCategory[] = [
@@ -55,7 +64,38 @@ const skillCategories: SkillCategory[] = [
   }
 ];
 
+// Sample skill usage data - in a real app, this would come from a proper data source
+const skillUsages: Record<string, SkillUsage> = {
+  "React": {
+    name: "React",
+    description: "A JavaScript library for building user interfaces.",
+    projects: ["Portfolio Website", "E-commerce Dashboard", "Social Media App"],
+    experience: ["3 years at TechCorp", "2 years at StartupX"]
+  },
+  "TypeScript": {
+    name: "TypeScript",
+    description: "A typed superset of JavaScript that compiles to plain JavaScript.",
+    projects: ["Banking API", "Portfolio Website"],
+    experience: ["2 years at FinTech Inc"]
+  },
+  "Node.js": {
+    name: "Node.js",
+    description: "JavaScript runtime built on Chrome's V8 JavaScript engine.",
+    projects: ["REST API", "Backend Services", "Real-time Chat App"],
+    experience: ["4 years at WebDev Agency"]
+  },
+  // Additional skills can be added here
+};
+
 const Skills = () => {
+  const [selectedSkill, setSelectedSkill] = useState<string | null>(null);
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleSkillClick = (skill: string) => {
+    setSelectedSkill(skill);
+    setIsOpen(true);
+  };
+
   return (
     <Section id="skills" className="bg-muted/30">
       <div>
@@ -63,13 +103,83 @@ const Skills = () => {
           Skills & Expertise
         </h2>
         
-        <div className="mb-6 text-center">
+        <div className="mb-8 text-center">
           <p className="text-muted-foreground max-w-2xl mx-auto">
             Explore my technical skills and expertise. Click on any skill to see where I've applied it in projects and professional experience.
           </p>
         </div>
         
-        <SkillsGraph skillCategories={skillCategories} />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {skillCategories.map((category, categoryIndex) => (
+            <Card key={categoryIndex} className="border border-muted hover:border-primary/50 transition-colors duration-300">
+              <CardContent className="p-6">
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="p-2 rounded-full bg-primary/10 text-primary">
+                    {category.icon}
+                  </div>
+                  <h3 className="font-semibold text-lg">{category.title}</h3>
+                </div>
+                
+                <div className="flex flex-wrap gap-2">
+                  {category.skills.map((skill, skillIndex) => (
+                    <button
+                      key={skillIndex}
+                      onClick={() => handleSkillClick(skill)}
+                      className="px-3 py-1 rounded-full bg-background border border-border hover:bg-primary/10 hover:border-primary/50 transition-colors duration-300 text-sm cursor-pointer"
+                    >
+                      {skill}
+                    </button>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+        
+        {/* Skill detail sheet */}
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetContent>
+            <SheetHeader>
+              <SheetTitle>{selectedSkill}</SheetTitle>
+              <SheetDescription>
+                {selectedSkill && skillUsages[selectedSkill] 
+                  ? skillUsages[selectedSkill].description 
+                  : "A valuable technical skill in my toolkit"}
+              </SheetDescription>
+            </SheetHeader>
+            <div className="py-6">
+              {selectedSkill && skillUsages[selectedSkill] ? (
+                <>
+                  {skillUsages[selectedSkill].projects && (
+                    <div className="mb-6">
+                      <h3 className="text-lg font-semibold mb-2">Projects</h3>
+                      <ul className="list-disc pl-5 space-y-1">
+                        {skillUsages[selectedSkill].projects.map((project, i) => (
+                          <li key={i}>{project}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                  
+                  {skillUsages[selectedSkill].experience && (
+                    <div>
+                      <h3 className="text-lg font-semibold mb-2">Experience</h3>
+                      <ul className="list-disc pl-5 space-y-1">
+                        {skillUsages[selectedSkill].experience.map((exp, i) => (
+                          <li key={i}>{exp}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+                </>
+              ) : (
+                <div className="text-muted-foreground">
+                  No detailed information available for this skill yet.
+                </div>
+              )}
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
     </Section>
   );
