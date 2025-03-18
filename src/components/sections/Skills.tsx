@@ -4,6 +4,7 @@ import {
   Smartphone, Palette, Wrench, Layers 
 } from "lucide-react";
 import Section from "../Section";
+import SkillsGraph from "../SkillsGraph";
 
 interface SkillCategory {
   title: string;
@@ -61,32 +62,14 @@ const Skills = () => {
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center animate-fade-in">
           Skills & Expertise
         </h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {skillCategories.map((category, index) => (
-            <div 
-              key={index} 
-              className="bg-card rounded-lg p-6 shadow-md transition-all duration-300 hover:shadow-lg hover:-translate-y-1 animate-fade-in"
-              style={{ animationDelay: `${index * 50 + 100}ms` }}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="p-2 bg-primary/10 rounded-md text-primary">
-                  {category.icon}
-                </div>
-                <h3 className="text-lg font-semibold">{category.title}</h3>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill, skillIndex) => (
-                  <span 
-                    key={skillIndex} 
-                    className="bg-secondary text-secondary-foreground px-3 py-1 rounded-full text-sm mb-2"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
-          ))}
+        
+        <div className="mb-8 text-center">
+          <p className="text-muted-foreground max-w-2xl mx-auto">
+            Drag nodes to explore, zoom in/out, and pan around. Skills are clustered by category.
+          </p>
         </div>
+        
+        <SkillsGraph skillCategories={skillCategories} />
       </div>
     </Section>
   );
