@@ -43,25 +43,44 @@ const projects: Project[] = [
     tech: ["JavaScript", "Chart.js", "Weather API", "CSS Grid"],
     github: "https://github.com",
     demo: "https://demo.com"
+  },
+  {
+    title: "Social Media Analytics",
+    description: "A comprehensive analytics dashboard for tracking social media engagement and audience growth.",
+    image: "https://placehold.co/600x400/1a2e35/ffffff?text=Social+Media+Analytics",
+    tech: ["React", "D3.js", "Node.js", "MongoDB"],
+    github: "https://github.com",
+    demo: "https://demo.com"
+  },
+  {
+    title: "AI Image Generator",
+    description: "An application that uses machine learning to generate unique images based on text prompts.",
+    image: "https://placehold.co/600x400/1a2e35/ffffff?text=AI+Image+Generator",
+    tech: ["Python", "TensorFlow", "React", "FastAPI"],
+    github: "https://github.com",
+    demo: "https://demo.com"
   }
 ];
 
 const Projects = () => {
   return (
     <Section id="projects" className="bg-muted/30">
-      <div>
+      <div className="w-full">
         <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center animate-fade-in">
           My Projects
         </h2>
         
-        <div className="max-w-5xl mx-auto px-4">
-          <Carousel opts={{ 
-            align: "center",
-            loop: true
-          }}>
+        <div className="w-full px-4">
+          <Carousel 
+            opts={{ 
+              align: "start",
+              loop: true
+            }}
+            className="w-full"
+          >
             <CarouselContent>
               {projects.map((project, index) => (
-                <CarouselItem key={index} className="md:basis-2/3 lg:basis-1/2">
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3 pl-4">
                   <div 
                     className="bg-card rounded-lg overflow-hidden shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1 animate-fade-in h-full flex flex-col" 
                     style={{ animationDelay: `${index * 100 + 100}ms` }}
@@ -107,7 +126,7 @@ const Projects = () => {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="mt-6 flex justify-center">
+            <div className="flex justify-center mt-6">
               <CarouselPrevious className="relative inset-0 translate-y-0 mr-2" />
               <CarouselNext className="relative inset-0 translate-y-0 ml-2" />
             </div>
