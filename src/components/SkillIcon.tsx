@@ -8,46 +8,46 @@ interface SkillIconProps {
 }
 
 const SkillIcon: React.FC<SkillIconProps> = ({ name, className }) => {
-  // Map of skill names to their icons and colors
+  // Map of skill names to their icons and colors from Simple Icons
   const skillIcons: Record<string, { icon: string; color: string }> = {
     'React': {
-      icon: '/logos/react.svg',
+      icon: 'https://cdn.simpleicons.org/react/61DAFB',
       color: '#61DAFB'
     },
     'TypeScript': {
-      icon: '/logos/typescript.svg',
+      icon: 'https://cdn.simpleicons.org/typescript/3178C6',
       color: '#3178C6'
     },
     'Next.js': {
-      icon: '/logos/nextjs.svg',
+      icon: 'https://cdn.simpleicons.org/nextdotjs/000000',
       color: '#000000'
     },
     'Vue.js': {
-      icon: '/logos/vue.svg',
+      icon: 'https://cdn.simpleicons.org/vuedotjs/4FC08D',
       color: '#4FC08D'
     },
     'Node.js': {
-      icon: '/logos/nodejs.svg',
+      icon: 'https://cdn.simpleicons.org/nodedotjs/339933',
       color: '#339933'
     },
     'MongoDB': {
-      icon: '/logos/mongodb.svg',
+      icon: 'https://cdn.simpleicons.org/mongodb/47A248',
       color: '#47A248'
     },
     'PostgreSQL': {
-      icon: '/logos/postgresql.svg',
+      icon: 'https://cdn.simpleicons.org/postgresql/4169E1',
       color: '#4169E1'
     },
     'Docker': {
-      icon: '/logos/docker.svg',
+      icon: 'https://cdn.simpleicons.org/docker/2496ED',
       color: '#2496ED'
     },
     'AWS': {
-      icon: '/logos/aws.svg',
+      icon: 'https://cdn.simpleicons.org/amazonaws/FF9900',
       color: '#FF9900'
     },
     'Git': {
-      icon: '/logos/git.svg',
+      icon: 'https://cdn.simpleicons.org/git/F05032',
       color: '#F05032'
     }
   };
