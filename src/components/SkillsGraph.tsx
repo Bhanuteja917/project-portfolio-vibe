@@ -1,5 +1,5 @@
 
-import { useCallback, useState } from 'react';
+import { useCallback, useState, useEffect } from 'react';
 import {
   ReactFlow,
   MiniMap,
@@ -96,7 +96,7 @@ const SkillsGraph: React.FC<SkillsGraphProps> = ({ skillCategories }) => {
   }, []);
 
   // Generate nodes and edges from skill categories
-  useState(() => {
+  useEffect(() => {
     const newNodes: Node[] = [];
     const newEdges: Edge[] = [];
     
@@ -174,7 +174,7 @@ const SkillsGraph: React.FC<SkillsGraphProps> = ({ skillCategories }) => {
     
     setNodes(newNodes);
     setEdges(newEdges);
-  }, []); // Fixed: Removed the incorrect arguments here
+  }, [skillCategories, handleNodeClick]); // Fixed: Added dependencies correctly
 
   const nodeTypes: NodeTypes = {
     skillNode: SkillNode,
