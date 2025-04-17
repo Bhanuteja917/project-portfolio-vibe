@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { cn } from "@/lib/utils";
 
@@ -68,8 +69,8 @@ const SkillIcon: React.FC<SkillIconProps> = ({ name, className }) => {
         )}
         style={{
           filter: "grayscale(1)",
-          webkitFilter: "grayscale(1)",
-          transition: "filter 0.3s ease"
+          WebkitFilter: "grayscale(1)",
+          transition: "filter 0.3s ease, WebkitFilter 0.3s ease"
         }}
       />
     </div>

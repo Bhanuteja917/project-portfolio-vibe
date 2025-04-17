@@ -1,3 +1,4 @@
+
 import { 
   Code, Database, Server, Globe, 
   Smartphone, Palette, Wrench, Layers 
@@ -123,7 +124,7 @@ const Skills = () => {
                     <button
                       key={skillIndex}
                       onClick={() => handleSkillClick(skill)}
-                      className="px-3 py-1 rounded-full bg-background border border-border hover:bg-primary/10 hover:border-primary/50 transition-colors duration-300 text-sm cursor-pointer flex items-center gap-2"
+                      className="group px-3 py-1 rounded-full bg-background border border-border hover:bg-primary/10 hover:border-primary/50 transition-colors duration-300 text-sm cursor-pointer flex items-center gap-2"
                     >
                       <SkillIcon name={skill} />
                       {skill}
