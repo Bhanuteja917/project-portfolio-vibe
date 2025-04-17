@@ -1,4 +1,3 @@
-
 import { 
   Code, Database, Server, Globe, 
   Smartphone, Palette, Wrench, Layers 
@@ -7,6 +6,7 @@ import { useState } from "react";
 import Section from "../Section";
 import { Card, CardContent } from "../ui/card";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "../ui/sheet";
+import SkillIcon from "../SkillIcon";
 
 interface SkillCategory {
   title: string;
@@ -64,7 +64,6 @@ const skillCategories: SkillCategory[] = [
   }
 ];
 
-// Sample skill usage data - in a real app, this would come from a proper data source
 const skillUsages: Record<string, SkillUsage> = {
   "React": {
     name: "React",
@@ -84,7 +83,6 @@ const skillUsages: Record<string, SkillUsage> = {
     projects: ["REST API", "Backend Services", "Real-time Chat App"],
     experience: ["4 years at WebDev Agency"]
   },
-  // Additional skills can be added here
 };
 
 const Skills = () => {
@@ -125,8 +123,9 @@ const Skills = () => {
                     <button
                       key={skillIndex}
                       onClick={() => handleSkillClick(skill)}
-                      className="px-3 py-1 rounded-full bg-background border border-border hover:bg-primary/10 hover:border-primary/50 transition-colors duration-300 text-sm cursor-pointer"
+                      className="px-3 py-1 rounded-full bg-background border border-border hover:bg-primary/10 hover:border-primary/50 transition-colors duration-300 text-sm cursor-pointer flex items-center gap-2"
                     >
+                      <SkillIcon name={skill} />
                       {skill}
                     </button>
                   ))}
@@ -136,7 +135,6 @@ const Skills = () => {
           ))}
         </div>
         
-        {/* Skill detail sheet */}
         <Sheet open={isOpen} onOpenChange={setIsOpen}>
           <SheetContent>
             <SheetHeader>
