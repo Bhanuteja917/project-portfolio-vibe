@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { cn } from "@/lib/utils";
 
@@ -64,21 +63,13 @@ const SkillIcon: React.FC<SkillIconProps> = ({ name, className }) => {
         src={iconData.icon}
         alt={`${name} logo`}
         className={cn(
-          "w-5 h-5 transition-all duration-300",
+          "w-5 h-5 transition-all duration-300 group-hover:filter-none",
           className
         )}
         style={{
           filter: "grayscale(1)",
-          WebkitFilter: "grayscale(1)",
+          webkitFilter: "grayscale(1)",
           transition: "filter 0.3s ease"
-        }}
-        onMouseOver={(e) => {
-          e.currentTarget.style.filter = "grayscale(0)";
-          e.currentTarget.style.WebkitFilter = "grayscale(0)";
-        }}
-        onMouseOut={(e) => {
-          e.currentTarget.style.filter = "grayscale(1)";
-          e.currentTarget.style.WebkitFilter = "grayscale(1)";
         }}
       />
     </div>
